@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_home_title" />
+
+        <item
+            android:id="@+id/nav_list_employee"
+            android:icon="@drawable/ic_employee"
+            android:title="@string/nav_list_employee_title" />
+
+        <item
+            android:id="@+id/nav_check_in_out_vehicle_title"
+            android:icon="@drawable/ic_shift"
+            android:title="@string/nav_check_in_out_vehicle_title" />
+
+        <item
+            android:id="@+id/nav_list_tickets"
+            android:icon="@drawable/ic_ticket"
+            android:title="@string/nav_list_ticket_title" />
+
+        <item
+            android:id="@+id/nav_list_parking_lots"
+            android:icon="@drawable/ic_parkinglots"
+            android:title="@string/nav_list_parking_lots_title" />
+
+        <item
+            android:id="@+id/nav_reports_detail"
+            android:icon="@drawable/ic_sale"
+            android:title="@string/nav_reports_detail_title" />
+    </group>
+</menu>
