@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".screen.check_in_out_vehicle.CheckInOutVehicleFragment">
+
+    <TextView
+        android:id="@+id/button_check_in_vehicle"
+        android:layout_width="0dp"
+        android:background="@drawable/bg_corner_5dp_stroke_black_2dp"
+        android:layout_height="@dimen/dp_150"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="@dimen/dp_30"
+        android:layout_marginVertical="@dimen/dp_15"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Xe vào"/>
+
+    <TextView
+        android:id="@+id/button_check_out_vehicle"
+        android:layout_width="0dp"
+        android:background="@drawable/bg_corner_5dp_stroke_black_2dp"
+        android:layout_height="@dimen/dp_150"
+        app:layout_constraintEnd_toEndOf="@id/button_check_in_vehicle"
+        app:layout_constraintStart_toStartOf="@id/button_check_in_vehicle"
+        app:layout_constraintTop_toBottomOf="@id/button_check_in_vehicle"
+        android:layout_marginVertical="@dimen/dp_40"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:text="Xe ra"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
