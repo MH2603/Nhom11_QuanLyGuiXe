@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -76,7 +78,17 @@ public class CheckOutVehicleFragment extends BaseFragment<FragmentCheckOutVehicl
     @Override
     protected void bindToViewModel() {
         viewModel.getVehicles().observe(getViewLifecycleOwner(), vehicles -> {
-            vehicleAdapter.submitList(vehicles);
+//            vehicleAdapter.submitList(vehicles);
+
+            // Lọc ra những Vehicle có CheckOutDate khác null
+            List<Vehicle> filteredVehicles = vehicles.stream()
+                    .filter(vehicle -> vehicle.getDateTimeOut() == null)
+                    .collect(Collectors.toList());
+
+            // Gửi danh sách đã lọc vào adapter
+            vehicleAdapter.submitList(filteredVehicles);
+
+            Toast.makeText(getContext(), "Load list Vehicle for check-out", Toast.LENGTH_SHORT).show();
         });
 
         viewModel.isCheckOutComplete().observe(getViewLifecycleOwner(), isCheckOutComplete -> {

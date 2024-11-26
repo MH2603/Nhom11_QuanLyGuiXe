@@ -1,5 +1,7 @@
 package com.example.quanlyguixe.screen.check_in_out_vehicle;
 
+import android.widget.Toast;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -12,11 +14,18 @@ import com.example.quanlyguixe.data.repo.VehicleRepository;
 import com.example.quanlyguixe.util.base.BaseViewModel;
 import com.example.quanlyguixe.util.interfaces.IResultListener;
 
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
+import io.reactivex.rxjava3.core.Single;
 
 @HiltViewModel
 public class CheckInCheckOutVehicleViewModel extends BaseViewModel {
@@ -60,28 +69,27 @@ public class CheckInCheckOutVehicleViewModel extends BaseViewModel {
         return  _parkingLots;
     }
 
-    // old methods
-//    public void getAllTickets() {
-//        registerDisposable(
-//                executeTaskWithLoading(
-//                        ticketRepository.getAllTickets(),
-//                        new IResultListener<List<Tickets>>() {
-//                            @Override
-//                            public void onSuccess(List<Tickets> data) {
-//                                _tickets.setValue(data);
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable throwable) {
-//                                error.setValue(throwable.getMessage());
-//                            }
-//                        }
-//                )
-//        );
-//    }
 
-    // new method to testing
     public void getAllTickets() {
+        registerDisposable(
+                executeTaskWithLoading(
+                        ticketRepository.getAllTickets(),
+                        new IResultListener<List<Tickets>>() {
+                            @Override
+                            public void onSuccess(List<Tickets> data) {
+                                _tickets.setValue(data);
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+                                error.setValue(throwable.getMessage());
+                            }
+                        }
+                )
+        );
+    }
+
+    public void getAllParkingLots() {
         registerDisposable(
                 executeTaskWithLoading(
                         parkingLotRepository.getAll(),
@@ -140,9 +148,11 @@ public class CheckInCheckOutVehicleViewModel extends BaseViewModel {
     }
 
     public void deleteVehicle(List<Vehicle> vehicle) {
+
         registerDisposable(
                 executeTaskWithLoading(
-                        vehicleRepository.deleteVehicle(vehicle),
+                        UpdateCheckOutDayForVehicles(vehicle),
+//                        vehicleRepository.deleteVehicle(vehicle),
                         new IResultListener<Integer>() {
 
                             @Override
@@ -158,6 +168,26 @@ public class CheckInCheckOutVehicleViewModel extends BaseViewModel {
                 )
         );
     }
+
+    private Single<Integer> UpdateCheckOutDayForVehicles(List<Vehicle> vehicles){
+//        for (Vehicle vehicle: vehicles) {
+//            vehicle.setDateTimeOut(Calendar.getInstance().getTime());
+//            vehicleRepository.updateVehicle(vehicle);
+//        }
+//
+//        return Single.just(1);
+
+        List<Single<Integer>> updateSingles = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            vehicle.setDateTimeOut(Calendar.getInstance().getTime());
+            updateSingles.add(vehicleRepository.updateVehicle(vehicle));
+        }
+
+        return Single.merge(updateSingles)
+                .count()
+                .map(count -> count.intValue());
+    }
+
 
     public void resetCompleteState() {
         _isCheckOutComplete.setValue(false);

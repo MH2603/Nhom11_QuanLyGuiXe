@@ -95,7 +95,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
         android:clickable="true"
         android:hint="Loại vé"
         app:errorEnabled="true"
@@ -107,6 +107,29 @@
 
         <AutoCompleteTextView
             android:id="@+id/filled_exposed_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/spinner_input_parkingLot_type"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:clickable="true"
+        android:hint="Bãi đỗ xe"
+        app:errorEnabled="true"
+        app:helperText="@string/text_required"
+        app:helperTextTextColor="@color/color_red"
+        app:layout_constraintEnd_toEndOf="@id/spinner_input_ticket_type"
+        app:layout_constraintStart_toStartOf="@id/spinner_input_ticket_type"
+        app:layout_constraintTop_toBottomOf="@id/spinner_input_ticket_type">
+
+        <AutoCompleteTextView
+            android:id="@+id/filled_parkinglot_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />

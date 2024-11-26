@@ -69,6 +69,7 @@ public class CheckInVehicleFragment extends BaseFragment<FragmentCheckInVehicleB
         viewBinding.textInputTimeCheckIn.getEditText().setText(time);
 
         viewModel.getAllTickets();
+        viewModel.getAllParkingLots();
     }
 
     @Override
@@ -149,16 +150,15 @@ public class CheckInVehicleFragment extends BaseFragment<FragmentCheckInVehicleB
     @Override
     protected void bindToViewModel() {
 
-        // old
-//        viewModel.getTickets().observe(getViewLifecycleOwner(), tickets -> {
-//            ArrayAdapter<Tickets> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, tickets);
-//            viewBinding.filledExposedDropdown.setAdapter(adapter);
-//        });
+        viewModel.getTickets().observe(getViewLifecycleOwner(), tickets -> {
+            ArrayAdapter<Tickets> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, tickets);
+            viewBinding.filledExposedDropdown.setAdapter(adapter);
+        });
 
         // new to testing
         viewModel.getParkingLots().observe(getViewLifecycleOwner(), parkingLots -> {
             ArrayAdapter<ParkingLot> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, parkingLots);
-            viewBinding.filledExposedDropdown.setAdapter(adapter);
+            viewBinding.filledParkinglotDropdown.setAdapter(adapter);
         });
 
         viewModel.getBackToPreviousScreen().observe(getViewLifecycleOwner(), backToPreviousScreen -> {

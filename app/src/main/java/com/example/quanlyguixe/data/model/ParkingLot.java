@@ -91,12 +91,14 @@ public class ParkingLot implements Parcelable {
 
     @Override
     public String toString() {
-        return "ParkingLots{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", availabelSlot=" + availabelSlot +
-                ", slotMax=" + slotMax +
-                '}';
+//        return "ParkingLots{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", availabelSlot=" + availabelSlot +
+//                ", slotMax=" + slotMax +
+//                '}';
+
+        return  name;
     }
 
     @Override
