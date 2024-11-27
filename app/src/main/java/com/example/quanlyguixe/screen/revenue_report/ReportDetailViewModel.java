@@ -46,7 +46,8 @@ public class ReportDetailViewModel extends BaseViewModel {
                             public void onSuccess(List<Vehicle> data) {
                                 try{
                                     List<Vehicle> list = data.stream().filter(item -> (
-                                            item.getDateTimeIn().getTime() >= startDate.getTime() && item.getDateTimeIn().getTime() <= endDate.getTime()
+                                            item.getDateTimeOut() != null &&
+                                            item.getDateTimeOut().getTime() >= startDate.getTime() && item.getDateTimeOut().getTime() <= endDate.getTime()
                                     )).collect(Collectors.toList());
                                     _listUsers.setValue(list);
                                 }catch (Exception e) {
