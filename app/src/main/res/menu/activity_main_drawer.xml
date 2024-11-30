@@ -9,10 +9,10 @@
             android:icon="@drawable/ic_home"
             android:title="@string/nav_home_title" />
 
-        <item
-            android:id="@+id/nav_list_employee"
-            android:icon="@drawable/ic_employee"
-            android:title="@string/nav_list_employee_title" />
+<!--        <item-->
+<!--            android:id="@+id/nav_list_employee"-->
+<!--            android:icon="@drawable/ic_employee"-->
+<!--            android:title="@string/nav_list_employee_title" />-->
 
         <item
             android:id="@+id/nav_check_in_out_vehicle_title"
